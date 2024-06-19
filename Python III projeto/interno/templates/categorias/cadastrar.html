@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="columns is-centered">
+    <h1 class="title"> Cadastro de Categoria </h1>
+</div>
+<form action="cadastrar" method="post">
+    {% csrf_token %}
+
+    <div class="field">
+        <label class="label">Nome</label>
+        <div class="control">
+            <input class="input" type="text" name="nome" id="nome" placeholder="Ex: Frutas..." autofocus required
+                minlength="3" maxlength="100">
+        </div>
+    </div>
+    <div class="is-pulled-right">
+        <a href="/interno/categoria" class="button is-danger is-outlined">
+            <span class="icon">
+                <i class="fa-solid fa-xmark-large"></i>
+            </span>
+            <span>Cancelar</span>
+        </a>
+        <button type="submit" class="button is-primary">
+            <span class="icon">
+                <i class="fa-solid fa-floppy-disk"></i>
+            </span>
+            <span>Salvar</span>
+        </button>
+    </div>
+</form>
+{% endblock %}

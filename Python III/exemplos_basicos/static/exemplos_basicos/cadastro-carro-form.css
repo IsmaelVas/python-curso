@@ -1,0 +1,17 @@
+body {
+    background-color: black;
+    color: wheat;
+}
+
+button {
+    width: 100px;
+    height: 50px;
+    background-color: grey;
+    color: wheat;
+}
+
+form,
+label {
+  display: block;
+  padding: 5px;
+}

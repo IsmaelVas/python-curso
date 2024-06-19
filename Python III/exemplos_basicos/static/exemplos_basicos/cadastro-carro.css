@@ -1,0 +1,21 @@
+body {
+    background-color: black;
+    color: skyblue;
+}
+
+img {
+    width: 400px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+li {
+    padding: 10px;
+    font-size: 22px;
+}
+
+div {
+    border: solid 5px;
+}

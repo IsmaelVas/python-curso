@@ -1,0 +1,54 @@
+PYTHON II
+
+Habilitar no PowerShell para poder habilitar o env do python, deve executar como administrador
+Set-ExecutionPolicy Unrestricted -Force
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Criar env do python
+py -m venv env
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Habilitar env do python
+env\Scripts\activate
+
+Desasbilitar env do python
+desactivate
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Instalar dependencias 
+pip install -r requirements.txt
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Instalar nova dependencia e atualizar o arquivo de requirements (para próxima vez ter o backup)
+pip install rich
+pip freeze > requirements.txt
+
+pip install mysql-connector-python
+
+
+PYTHON III - DJANGO
+
+- Criar o env:
+    ```
+    py -m venv env
+    ```
+- Habilitar o env
+    ```
+    env\Scripts\activate
+    ```
+- Inslatar o Django
+    ```
+    pip install Django
+    ```
+- Gerar o arquivo de requirements.txt
+    ```
+    pip freeze > requirements.txt
+    ```
+- Criar o projeto
+    ```
+    django-admin startproject setup .
+    ```
+- Acessar o help do Django
+    ```
+    py manage.py --help
+    ```

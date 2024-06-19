@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'exemplos_basicos/sobre.css' %}">
+</head>
+<body>
+    <a href="home">Home</a>
+    <h1>Sobre o aluno</h1>
+    <div>
+        <span>Nome completo: {{nome_completo}}</span>
+        <br>
+        <span>Ano de nascimento: {{ano_nascimento}}</span>
+        <br>
+        <span>Peso: {{peso}}</span>
+        <br>
+        <span>Altura: {{altura}}</span>
+        <br>
+        <span>Imc: {{imc}}</span>
+    </div>
+    <img src="https://www.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/11/ramon-dino-mr-olympia-e1699131023342.jpeg" alt="imagem do aluno">
+</body>
+</html>

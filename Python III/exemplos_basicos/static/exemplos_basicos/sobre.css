@@ -1,0 +1,22 @@
+body {
+    background-color: black;
+    color: gold;
+    color: rebeccapurple;
+}
+
+img {
+    width: 500px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+span {
+    padding: 10px;
+    font-size: 22px;
+}
+
+div {
+    border: solid 5px;
+}

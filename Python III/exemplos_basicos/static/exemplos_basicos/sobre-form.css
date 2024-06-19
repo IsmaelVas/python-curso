@@ -1,0 +1,16 @@
+body {
+    background-color: black;
+    color: lime;
+}
+button {
+    width: 100px;
+    height: 50px;
+    background-color: grey;
+    color: lime;
+}
+
+form,
+label {
+  display: block;
+  padding: 5px;
+}
