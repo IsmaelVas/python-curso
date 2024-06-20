@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from . import models
+from interno.forms import CategoriaForm
 
 def home(request):
     return render(request, "home.html")
@@ -82,3 +83,59 @@ def estado_editar(request, id: int):
     estado.sigla = request.POST.get("sigla").strip().upper()
     estado.save()
     return redirect("estados")
+
+
+def categoria_form_index(request):
+    # Consultar os registros da tabela de categorias (SELECT)
+    categorias = models.Categoria.objects.all()
+    contexto = {
+        "categorias": categorias
+    }
+    return render(request, "categorias_forms/index.html", context=contexto)
+
+
+def categoria_form_cadastrar(request):
+    # Verificando se a request é do tipo POST
+    if request.method == "POST":
+        # Construindo o form com os dados que o usúario preencheu
+        form = CategoriaForm(request.POST)
+        # Valida se o dados preenchidos que estão no form são válidos
+        if form.is_valid():
+            # Criar a categoria nesse caso
+            form.save()
+            # Redirecionar para a lista de categorias
+            return redirect("categorias_form")
+    # Caso da requisição do tipo GET
+    else:
+        # Criando o form vazio
+        form = CategoriaForm()
+    # Criando o contexto passando o form
+    contexto = {"form": form}
+    # Retornar o html do form
+    return render(request, "categorias_forms/cadastrar.html", context=contexto)
+
+
+def categoria_form_apagar(request, id: int):
+    # Buscar a categoria que contém o id que veio na rota
+    categoria = models.Categoria.objects.get(pk=id)
+    # DELETE FROM categoria WHERE id = 2
+    # Executar o delete na tabela de categoria filtrando por id
+    categoria.delete()
+    # Redireciona para tela de listagem de categoria
+    return redirect("categorias_form")
+
+
+def categoria_form_editar(request, id: int):
+    categoria = models.Categoria.objects.get(pk=id)
+    if request.method == "POST":
+        form = CategoriaForm(request.POST, instance=categoria)
+        if form.is_valid():
+            form.save()
+            return redirect("categorias_form")
+    else:
+        form = CategoriaForm(instance=categoria)
+    contexto = {
+        "form": form,
+        "categoria": categoria,
+    }
+    return render(request, "categorias_forms/editar.html", contexto)
