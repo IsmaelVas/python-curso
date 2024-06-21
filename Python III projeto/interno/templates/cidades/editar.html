@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="columns is-centered">
+    <h1 class="title"> Editar Cidade </h1>
+</div>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="field">
+        <label class="label" for="nome">Nome</label>
+        <div class="control">
+            <input class="input" type="text" name="nome" id="nome" placeholder="Ex. Gaspar" autofocus required minlength="3" maxlength="40" value="{{cidade.nome}}">
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label" for="estado">estado</label>
+        <div class="select">
+            <select name="estado" id="estado" required>
+                {% for estado in estados %}
+                {% if estado.id == produto.estado.id %}
+                <option value="{{estado.id}}" selected>{{estado.nome}}</option>
+                {% else %}
+                <option value="{{estado.id}}">{{estado.nome}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label" for="preco">Quantidade de Habitantes</label>
+        <div class="control">
+            <input class="input" type="text" name="preco" id="preco" required value="{{cidade.quantidade_habitantes}}">
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label" for="clima">Clima</label>
+        <div class="select">
+            <select name="clima" id="clima" required value="{{cidade.clima}}">
+                <option value="1">Desértico</option>
+                <option value="2">Equatorial</option>
+                <option value="3">Frio</option>
+                <option value="4">Mediterrâneo</option>
+                <option value="5">Polar</option>
+                <option value="5">Temperado</option>
+                <option value="5">Tropical</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label" for="data_fundacao">Data de Fundação</label>
+        <div class="control">
+            <input class="input" type="date" name="data_fundacao" id="data_fundacao" required placeholder="Ex. 15/03/201" autofocus value="cidade.data_fundacao">
+        </div>
+    </div>
+
+    <div class="is-pulled-right">
+        <a href="/interno/cidade" class="button is-danger is-outlined">
+            <span class="icon">
+                <i class="fa-sharp fa-solid fa-xmark"></i>
+            </span>
+            <span>Cancelar</span>
+        </a>
+        <button type="submit" class="button is-primary">
+            <span class="icon">
+                <i class="fa-solid fa-floppy-disk"></i>
+            </span>
+            <span>Salvar</span>
+        </button>
+    </div>
+
+    </div>
+</form>
+{% endblock %}

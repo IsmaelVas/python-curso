@@ -19,7 +19,7 @@ def categoria_cadastrar(request):
     if request.method == "GET":
         return render(request, "categorias/cadastrar.html")
     # Obtendo os dados que o usuário preencheu nos campos
-    nome = request.POST.get("nome").strip()
+    nome = request.POST.get("nome").strip().capitalize()
     # Instanciando um objeto da classe Cateforia
     # Preenchendo os atributos (nome)
     categoria = models.Categoria(nome=nome)
@@ -45,7 +45,7 @@ def categoria_editar(request, id: int):
     if request.method == "GET":
         contexto = { "categoria": categoria }
         return render(request, "categorias/editar.html", context=contexto)
-    categoria.nome = request.POST.get("nome").strip()
+    categoria.nome = request.POST.get("nome").strip().capitalize()
     categoria.save()
     return redirect ("categorias")
 
@@ -139,3 +139,121 @@ def categoria_form_editar(request, id: int):
         "categoria": categoria,
     }
     return render(request, "categorias_forms/editar.html", contexto)
+
+
+def produto_index(request):
+    produtos = models.Produto.objects.all()
+    contexto = {"produtos": produtos}
+    return render(request, "produtos/index.html", context=contexto)
+
+
+def produto_cadastrar(request):
+    if request.method == "POST":
+        nome = request.POST.get("nome")
+        preco = request.POST.get("preco")
+        id_categoria = request.POST.get("categoria")
+        descricao = request.POST.get("descricao")
+        produto = models.Produto(
+            nome=nome,
+            preco=preco,
+            descricao=descricao,
+            categoria_id=id_categoria,
+        )
+        produto.save()
+        return redirect ("produtos")
+    categorias = models.Categoria.objects.all()
+    contexto = {"categorias": categorias}
+    return render(request, "produtos/cadastrar.html", contexto)
+
+
+def produto_apagar(request, id: int):
+    produto = models.Produto.objects.get(pk=id)
+    produto.delete()
+    return redirect("produtos")
+
+
+def produto_editar(request, id: int):
+    produto = models.Produto.objects.get(pk=id)
+
+    if request.method == "POST":
+        nome = request.POST.get("nome", "").capitalize
+        preco = request.POST.get("preco")
+        id_categoria = request.POST.get("categoria")
+        descricao = request.POST.get("descricao")
+        produto.nome = nome
+        produto.preco = preco
+        produto.descricao = descricao
+        produto.categoria_id = id_categoria
+        produto.save()
+        return redirect("produtos")
+    
+    categorias = models.Categoria.objects.order_by("nome").all()
+    contexto = {
+        "categorias": categorias,
+        "produto": produto,
+    }
+    return render(request, "produto/editar.html", contexto)
+
+
+def cidade_index(request):
+    cidades = models.Cidade.objects.all()
+    contexto = {"cidades": cidades}
+    return render(request, "cidades/index.html", context=contexto)
+
+
+def cidade_cadastrar(request):
+    if request.method == "POST":
+        nome = request.POST.get("nome")
+        quantidade_habitantes = request.POST.get("quantidade_habitantes")
+        clima = request.POST.get("clima")
+        data_fundacao = request.POST.get("data_fundacao")
+        id_estado = request.POST.get("estado")
+        cidade = models.Cidade(
+            nome=nome,
+            quantidade_habitantes=quantidade_habitantes,
+            clima=clima,
+            data_fundacao=data_fundacao,
+            estado_id = id_estado
+        )
+        cidade.save()
+        return redirect("cidades")
+    estados = models.Estado.objects.all()
+    contexto = {"estados": estados}
+    return render(request, "cidades/cadastrar.html", contexto)
+
+
+def cidade_apagar(request, id: int):
+    cidade = models.Cidade.objects.get(pk=id)
+    cidade.delete()
+    return redirect("cidades")
+
+
+
+def cidade_editar(request, id: int):
+    cidade = models.Cidade.objects.get(pk=id)
+    if request.method == "POST":
+        nome = request.POST.get("nome")
+        quantidade_habitantes = request.POST.get("quantidade_habitantes")
+        clima = request.POST.get("clima")
+        data_fundacao = request.POST.get("data_fundacao")
+        id_estado = request.POST.get("estado")
+        cidade.nome = nome
+        cidade.quantidade_habitantes = quantidade_habitantes
+        cidade.clima = clima
+        cidade.data_fundacao = data_fundacao
+        cidade.id_estado = id_estado
+        cidade.save()
+        return redirect("cidades")
+    
+    estados = models.Cidade.objects.order_by("nome").all()
+    contexto = {
+        "estados": estados,
+        "cidade": cidade,
+    }
+    return render(request, "cidades/editar.html", contexto)
+
+
+
+
+
+

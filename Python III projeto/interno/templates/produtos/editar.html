@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="columns is-centered">
+    <h1 class="title"> Editar Produto </h1>
+</div>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="field">
+        <label class="label" for="nome">Nome</label>
+        <div class="control">
+            <input class="input" type="text" name="nome" id="nome" placeholder="Ex. Café" autofocus required minlength="3" maxlength="100" value="{{produto.nome}}">
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label" for="categoria">Categoria</label>
+        <div class="select">
+            <select name="categoria" id="categoria" required>
+                {% for categoria in categorias %}
+                {% if categoria.id == produto.categoria.id %}
+                <option value="{{categoria.id}}" selected>{{categoria.nome}}</option>
+                {% else %}
+                <option value="{{categoria.id}}">{{categoria.nome}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label" for="preco">Preço</label>
+        <div class="control">
+            <input class="input" type="text" name="preco" id="preco" required value="{{produto.preco}}">
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label" for="descricao">Descrição</label>
+        <div>
+            <textarea class="textarea" name="descricao" id="descricao" required>{{produto.descricao}}</textarea>
+        </div>
+    </div>
+    <div class="is-pulled-right">
+        <a href="/interno/categoria" class="button is-danger is-outlined">
+            <span class="icon">
+                <i class="fa-sharp fa-solid fa-xmark"></i>
+            </span>
+            <span>Cancelar</span>
+        </a>
+        <button type="submit" class="button is-primary">
+            <span class="icon">
+                <i class="fa-solid fa-floppy-disk"></i>
+            </span>
+            <span>Salvar</span>
+        </button>
+    </div>
+
+    </div>
+</form>
+{% endblock %}

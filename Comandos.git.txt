@@ -1,0 +1,4 @@
+# git status - para ver o que não foi feito commit
+# git add . - adiciona dentro da pasta .git
+# git commit -m "Exemplo de form.Models em categorias-form" - 
+# git push origin main
