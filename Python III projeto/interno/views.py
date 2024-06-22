@@ -239,9 +239,19 @@ def cidade_editar(request, id: int):
         id_estado = request.POST.get("estado")
         cidade.nome = nome
         cidade.quantidade_habitantes = quantidade_habitantes
-        cidade.clima = clima
         cidade.data_fundacao = data_fundacao
-        cidade.id_estado = id_estado
+        cidade.estado = id_estado
+        climas = {
+            "1": "Desértico",
+            "2": "Equatorial",
+            "3": "Frio",
+            "4": "Mediterrâneo",
+            "5": "Polar",
+            "6": "Temperado",
+            "7": "Tropical",
+        }
+        cidade.clima = clima
+        cidade.climas = climas
         cidade.save()
         return redirect("cidades")
     

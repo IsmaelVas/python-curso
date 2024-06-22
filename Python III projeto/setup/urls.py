@@ -21,5 +21,6 @@ from . import views as views_setup
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('interno', include('interno.urls')),
+    path('publico', include('publico.urls')),
     path('', views_setup.home),
 ]

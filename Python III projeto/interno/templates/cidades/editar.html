@@ -16,38 +16,28 @@
     </div>
 
     <div class="field">
-        <label class="label" for="estado">estado</label>
+        <label class="label" for="estado">Estado</label>
         <div class="select">
             <select name="estado" id="estado" required>
                 {% for estado in estados %}
-                {% if estado.id == produto.estado.id %}
-                <option value="{{estado.id}}" selected>{{estado.nome}}</option>
-                {% else %}
-                <option value="{{estado.id}}">{{estado.nome}}</option>
-                {% endif %}
+                <option value="{{estado.id}}" selected>{{cidade.estado.nome}}</option>
                 {% endfor %}
             </select>
         </div>
     </div>
 
     <div class="field">
-        <label class="label" for="preco">Quantidade de Habitantes</label>
+        <label class="label" for="quantidade_habitantes">Quantidade de Habitantes</label>
         <div class="control">
-            <input class="input" type="text" name="preco" id="preco" required value="{{cidade.quantidade_habitantes}}">
+            <input class="input" type="text" name="quantidade_habitantes" id="quantidade_habitantes" required value="{{cidade.quantidade_habitantes}}">
         </div>
     </div>
 
     <div class="field">
         <label class="label" for="clima">Clima</label>
         <div class="select">
-            <select name="clima" id="clima" required value="{{cidade.clima}}">
-                <option value="1">Desértico</option>
-                <option value="2">Equatorial</option>
-                <option value="3">Frio</option>
-                <option value="4">Mediterrâneo</option>
-                <option value="5">Polar</option>
-                <option value="5">Temperado</option>
-                <option value="5">Tropical</option>
+            <select name="clima" id="clima" required>
+                
             </select>
         </div>
     </div>
