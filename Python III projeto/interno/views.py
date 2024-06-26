@@ -1,6 +1,8 @@
+from pathlib import Path
 from django.shortcuts import redirect, render
 from . import models
 from interno.forms import CategoriaForm
+from django.core.files.storage import FileSystemStorage
 
 def home(request):
     return render(request, "home.html")
@@ -153,17 +155,32 @@ def produto_cadastrar(request):
         preco = request.POST.get("preco")
         id_categoria = request.POST.get("categoria")
         descricao = request.POST.get("descricao")
+        imagem = __upload_imagem(request)
         produto = models.Produto(
             nome=nome,
             preco=preco,
             descricao=descricao,
             categoria_id=id_categoria,
+            imagem=imagem,
         )
         produto.save()
         return redirect ("produtos")
     categorias = models.Categoria.objects.all()
     contexto = {"categorias": categorias}
     return render(request, "produtos/cadastrar.html", contexto)
+
+
+def __upload_imagem(request):
+    if not request.FILES:
+        return None
+    imagem = request.FILES.get("imagem", None)
+    if not imagem:
+        return None
+
+    salvador = FileSystemStorage()
+    caminho_arquivo = Path("produtos_imagens") / imagem.name
+    nome_arquivo = salvador.save(caminho_arquivo, imagem)
+    return nome_arquivo
 
 
 def produto_apagar(request, id: int):
@@ -226,7 +243,6 @@ def cidade_apagar(request, id: int):
     cidade = models.Cidade.objects.get(pk=id)
     cidade.delete()
     return redirect("cidades")
-
 
 
 def cidade_editar(request, id: int):
