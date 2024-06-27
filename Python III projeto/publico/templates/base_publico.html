@@ -13,10 +13,17 @@
     {% include 'navbar.html' %}
     <section class="section">
         <div class="container">
+            {% if registro_criado%}
+            <div class="notification is-success">
+              <button class="delete"></button>
+              {{registro_criado_mensagem}}
+            </div>
+            {% endif %}
           {% block body %}{% endblock %}
         </div>
       </section>
       <script src="https://kit.fontawesome.com/96a844a27d.js" crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/imask"></script>
       <script src="{% static 'js/tabs.js' %}"></script>
       <script src="{% static 'js/modal.js' %}"></script>
     {% block scripts %}{% endblock %}

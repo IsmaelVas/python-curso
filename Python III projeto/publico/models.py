@@ -32,6 +32,9 @@ class Cliente(models.Model):
         # SELECT com INNER JOIN
         return self.contato_set.all()
 
+    def get_enderecos(self):
+        return self.endereco_set.all()
+
 class Contato(models.Model):
     tipo = models.CharField(choices=ContatoTipo.choice(), max_length=100)
     valor = models.CharField(max_length=200)
@@ -43,5 +46,6 @@ class Endereco(models.Model):
     bairro = models.CharField(max_length=100)
     numero = models.CharField(max_length=50)
     cep = models.CharField(max_length=10)
-    complemento = models.TextField()
+    rua = models.CharField(max_length=100, null=True)
+    complemento = models.TextField(null=True, blank=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)

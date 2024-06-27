@@ -21,16 +21,17 @@
             {% include 'clientes/tabs/tab-contatos.html' %}
         </div>
         <div id="tab-enderecos" class="tab-content">
-            Olá mundo
+            {% include 'clientes/tabs/tab-endereco.html' %}
         </div>
     </div>
 </div>
+{% endblock %}
 
+{% block scripts %}
+    {% load static %}
 
+        <script src="{% static 'js/cliente-contato.js' %}"></script>
+        <script src="{% static 'js/cliente-endereco.js' %}"></script>
 
-
-{% load static %}
-
-<script src="{% static 'js/cliente-contato.js' %}"></script>
 
 {% endblock %}

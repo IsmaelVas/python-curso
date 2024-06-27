@@ -34,4 +34,4 @@ function submitFormDadosContato(event){
     document.getElementById("form-contato").submit()
 }
 
-document.getElementById("form-contato-botao-cadastrar").onclick = submitFormDadosContat
+document.getElementById("form-contato-botao-cadastrar").onclick = submitFormDadosContato
