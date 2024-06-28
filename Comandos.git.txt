@@ -2,3 +2,7 @@
 # git add . - adiciona dentro da pasta .git
 # git commit -m "Exemplo de form.Models em categorias-form" - 
 # git push origin main
+
+
+# git clone - para clonar o repositorio
+# git pull origin main - para puxar somente o que falta
